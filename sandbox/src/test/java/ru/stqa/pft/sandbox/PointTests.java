@@ -10,7 +10,7 @@ public class PointTests {
 
   @Test
   public void testPoint(){
-    Assert.assertEquals(p1.distance(p2), Math.sqrt(Math.pow((p1.x - p2.x), 2) + Math.pow((p1.y - p2.y), 2)));
+    Assert.assertEquals(p1.distance(p2), 2.8284271247461903);
   }
 
 }
