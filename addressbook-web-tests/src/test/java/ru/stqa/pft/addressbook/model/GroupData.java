@@ -21,10 +21,6 @@ public class GroupData {
     this.footer = footer;
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
-
   public int getId() {
     return id;
   }
