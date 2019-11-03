@@ -34,7 +34,8 @@ public class ContactModificationTests extends TestBase {
     int index = before.size() - 1;
     ContactData contact = new ContactData().withId(before.get(index).getId()).withFirstname("Ruslan").withLastname("Yuldashev")
             .withAddress("Moscow").withTelephone("8-495-716-45-78").withEmail("uldashev@inbox.ru").withGroup("test1");
-    app.contact().modify(index, contact);
+    int lastElementOfContacts = before.size();
+    app.contact().modify(lastElementOfContacts, contact);
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
