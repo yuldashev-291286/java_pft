@@ -99,7 +99,7 @@ public class ContactHelper extends HelperBase {
     home();
   }
 
-  public int contactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 

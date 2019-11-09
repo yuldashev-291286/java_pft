@@ -37,8 +37,8 @@ public class ContactModificationTests extends TestBase {
             .withAddress("Moscow").withTelephone("8-495-716-45-78").withEmail("uldashev@inbox.ru").withGroup("test1");
     int lastElementOfContacts = before.size();
     app.contact().modify(lastElementOfContacts, contact);
+    assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.contact().all();
-    assertThat(after.size(), equalTo(before.size()));
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 
