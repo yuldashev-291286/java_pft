@@ -81,8 +81,8 @@ public class ContactHelper extends HelperBase {
     returnToContactPage();
   }
 
-  public void modify(int lastElementOfContacts, ContactData contact) {
-    editContact(lastElementOfContacts);
+  public void modify(int id, ContactData contact) {
+    initContactModificationById(id);
     fillContactForm(contact, false);
     submitContactModification();
     contactCache = null;
