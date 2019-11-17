@@ -9,6 +9,7 @@ public class GroupData {
 
   @XStreamOmitField
   private int id = Integer.MAX_VALUE;
+
   @Expose
   private String name;
   @Expose
