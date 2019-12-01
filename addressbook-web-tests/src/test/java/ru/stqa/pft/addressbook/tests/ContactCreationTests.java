@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -64,22 +65,23 @@ public class ContactCreationTests extends TestBase {
       app.goTo().home();
     }
     if (app.db().contacts().size() == 0) {
+      Groups groups = app.db().groups();
       app.contact().create(new ContactData()
               .withFirstname("Ivan").withLastname("Ivanov").withAddress("Moscow")
-              .withTelephone("8-495-716-45-78").withEmail("Ivanov@mail.ru").withGroup("test1"), true);
+              .withTelephone("8-495-716-45-78").withEmail("Ivanov@mail.ru")
+              .inGroup(groups.iterator().next()), true);
     }
   }
 
   @Test(dataProvider = "validContactsFromJson")
   public void testContactCreation(ContactData contact) throws Exception {
+    File photo = new File("src/test/resources/stru.png");
     Contacts before = app.db().contacts();
-    //File photo = new File("src/test/resources/stru.png");
     app.contact().create(contact, true);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.db().contacts();
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt()))));
-
   }
 
 }
