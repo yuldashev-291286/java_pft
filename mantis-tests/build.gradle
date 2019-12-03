@@ -4,7 +4,7 @@ test {
     useTestNG()
 }
 
-test {
+task {
     useTestNG() {
         suites 'src/test/resources/testng.xml'
     }
