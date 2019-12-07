@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.thorntail.jdk-specific:thorntail-jdk-specific:2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail.jdk-specific/thorntail-jdk-specific/2/7bd1b90fb9af84a930ad7c45fa58c23597329849/thorntail-jdk-specific-2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail.jdk-specific/thorntail-jdk-specific/2/79403e9b129a56b855b8cff51340d22061006788/thorntail-jdk-specific-2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

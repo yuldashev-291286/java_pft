@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.thorntail:logging:2.6.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail/logging/2.6.0.Final/f4b354e3399cd0d1c7022225f9b0f767b1bffa8d/logging-2.6.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail/logging/2.6.0.Final/37073e715d42c41b31df8d4c255eb7d73766ec94/logging-2.6.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

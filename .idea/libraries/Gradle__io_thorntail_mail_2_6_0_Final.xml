@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.thorntail:mail:2.6.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail/mail/2.6.0.Final/8f5ab96ce48db2341b153d28798e35be17e60acd/mail-2.6.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail/mail/2.6.0.Final/d2fe48f847ce8e9f55c417bd000bbd15635bcd91/mail-2.6.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

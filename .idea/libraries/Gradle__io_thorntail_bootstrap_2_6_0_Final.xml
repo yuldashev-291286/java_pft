@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.thorntail:bootstrap:2.6.0.Final">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail/bootstrap/2.6.0.Final/cdd152c3bb45c6ae367c3ec5dd9556919cb22eca/bootstrap-2.6.0.Final.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.thorntail/bootstrap/2.6.0.Final/d4d0bcb00bba5343988a649aba01d406a92ba7fd/bootstrap-2.6.0.Final-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

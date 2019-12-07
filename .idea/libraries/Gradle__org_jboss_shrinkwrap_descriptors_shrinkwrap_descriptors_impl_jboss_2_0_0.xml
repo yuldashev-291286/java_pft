@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.jboss.shrinkwrap.descriptors:shrinkwrap-descriptors-impl-jboss:2.0.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.shrinkwrap.descriptors/shrinkwrap-descriptors-impl-jboss/2.0.0/94225685de9490cf6b6861a4f14c5931570d6a1a/shrinkwrap-descriptors-impl-jboss-2.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jboss.shrinkwrap.descriptors/shrinkwrap-descriptors-impl-jboss/2.0.0/44cb6d02fa1649abfdd93146d2b8284510573031/shrinkwrap-descriptors-impl-jboss-2.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
