@@ -8,7 +8,7 @@ import ru.stqa.pft.mantis.appmanager.ApplicationManager;
 public class TestBase {
 
   protected static final ApplicationManager app
-          = new ApplicationManager(System.getProperty("browser", BrowserType.IE));
+          = new ApplicationManager(System.getProperty("browser", BrowserType.FIREFOX));
 
   @BeforeSuite(alwaysRun = true)
   public void setUp() throws Exception {

@@ -85,7 +85,7 @@ public class ApplicationManager {
 
   public JamesHelper james() {
     if (jamesHelper == null) {
-      jamesHelper = new JamesHelper();
+      jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
   }

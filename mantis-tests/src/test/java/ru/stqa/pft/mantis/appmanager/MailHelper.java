@@ -25,7 +25,7 @@ public class MailHelper {
     long start = System.currentTimeMillis();
     while (System.currentTimeMillis() < start + timeout) {
       if(wiser.getMessages().size() >= count) {
-        wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
+        return wiser.getMessages().stream().map((m) -> toModelMail(m)).collect(Collectors.toList());
       }
       try {
         Thread.sleep(1000);
