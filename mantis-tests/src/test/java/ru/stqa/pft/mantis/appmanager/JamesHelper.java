@@ -39,8 +39,8 @@ public class JamesHelper {
 
   public void createUser(String name, String passwd) {
     initTelnetSession();
-    write("adduser " + name + passwd);
-    String result = readUntil("User " + name + "added");
+    write("adduser " + name + " " + passwd);
+    String result = readUntil("User " + name + " added");
     closeTelnetSession();
   }
 
@@ -66,10 +66,10 @@ public class JamesHelper {
       e.printStackTrace();
     }
 
-    readUntil("");
-    write(login);
-    readUntil("");
-    write(password);
+    readUntil("Login id:");
+    write("");
+    readUntil("Password:");
+    write("");
 
     readUntil("Login id:");
     write(login);
