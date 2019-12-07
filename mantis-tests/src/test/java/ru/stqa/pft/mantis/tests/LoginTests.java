@@ -13,7 +13,7 @@ public class LoginTests extends TestBase {
   public void testLogin() throws IOException {
     HttpSession session = app.newSession();
     assertTrue(session.login("administrator", "root"));
-    //assertTrue(session.isLoggedInAs("administrator"));
+    assertTrue(session.isLoggedInAs("administrator"));
   }
 
 }
