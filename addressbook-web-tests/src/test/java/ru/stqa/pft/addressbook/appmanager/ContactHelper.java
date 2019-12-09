@@ -90,15 +90,16 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("home"));
   }
 
-  public void create(ContactData contactData, boolean creation) {
+  public ContactData create(ContactData contactData, boolean creation) {
     initContactCreation();
     fillContactForm(contactData, creation);
     submitContactCreation();
     contactCache = null;
     returnToContactPage();
+    return contactData;
   }
 
-  public void createContactWithoutGroup(ContactData contactData) {
+  public void createContactWithoutAGroup(ContactData contactData) {
     initContactCreation();
     fillContactFormWithoutGroup(contactData);
     submitContactCreation();
@@ -121,18 +122,10 @@ public class ContactHelper extends HelperBase {
     home();
   }
 
-  public void contactAddToGroup() {
+  public void removeContactFromGroup(int idContact, String nameGroup) {
     home();
-    contactsWithoutGroup();
-    selectContact();
-    toGroup();
-    addToGroup();
-  }
-
-  public void deleteContactFromGroup() {
-    home();
-    contactsIsPartOfGroup();
-    selectContact();
+    goToContactGroup(nameGroup);
+    selectContactById(idContact);
     removeFromGroup();
   }
 
@@ -140,32 +133,8 @@ public class ContactHelper extends HelperBase {
     click(By.name("remove"));
   }
 
-  public boolean checkContactsWithoutGroups() {
-    home();
-    contactsWithoutGroup();
-    if (wd.findElement(By.id("search_count")).getText().equals("0")) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  public boolean checkContactsInGroups() {
-    home();
-    contactsIsPartOfGroup();
-    if (wd.findElement(By.id("search_count")).getText().equals("0")) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  private void contactsWithoutGroup() {
-    new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
-  }
-
-  private void contactsIsPartOfGroup() {
-    new Select(wd.findElement(By.name("group"))).selectByVisibleText("test1");
+  private void goToContactGroup(String nameGroup) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(nameGroup);
   }
 
   public int count() {
@@ -222,12 +191,47 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
-  public void toGroup() {
-    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText("test1");
+  public void toGroup(String nameGroup) {
+    new Select(wd.findElement(By.name("to_group"))).selectByVisibleText(nameGroup);
   }
 
   public void addToGroup() {
     click(By.name("add"));
+  }
+
+  private void contactsNoneGroups() {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText("[none]");
+  }
+
+  private void contactsWithGroups(String nameGroup) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(nameGroup);
+  }
+
+  public boolean сontactsWithoutAGroups() {
+    home();
+    contactsNoneGroups();
+    if (wd.findElement(By.id("search_count")).getText().equals("0")) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public void addContactFromGroup(int idContact, String nameGroup) {
+    home();
+    selectContactById(idContact);
+    toGroup(nameGroup);
+    addToGroup();
+  }
+
+  public boolean contactsInGroups(String nameGroup) {
+    home();
+    contactsWithGroups(nameGroup);
+    if (wd.findElement(By.id("search_count")).getText().equals("0")) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

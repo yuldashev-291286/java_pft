@@ -2,15 +2,12 @@ package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
+import ru.stqa.pft.addressbook.model.*;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class AddContactToGroupTests extends TestBase {
+public class RemoveContactFromGroupTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
@@ -28,33 +25,38 @@ public class AddContactToGroupTests extends TestBase {
               .withTelephone("8-495-716-45-78").withEmail("Ivanov@mail.ru")
               .inGroup(groups.iterator().next()), true);
     }
-    if (app.contact().сontactsWithoutAGroups()) {
-      app.contact().createContactWithoutAGroup(new ContactData()
-              .withFirstname("Ivan").withLastname("Ivanov").withAddress("Moscow")
-              .withTelephone("8-495-716-45-78").withEmail("Ivanov@mail.ru"));
+    Groups groups = app.db().groups();
+    String nameGroup = null;
+    for (GroupData group: groups) {
+      nameGroup = groups.iterator().next().getName();
+      if (app.contact().contactsInGroups(nameGroup)) {
+        app.contact().create(new ContactData()
+                .withFirstname("Ivan").withLastname("Ivanov").withAddress("Moscow")
+                .withTelephone("8-495-716-45-78").withEmail("Ivanov@mail.ru")
+                .inGroup(groups.iterator().next()), true);
+      }
     }
   }
 
   @Test
-  public void testAddContactToGroup() {
+  public void testRemoveContactFromGroup() {
     Contacts beforeContacts = app.db().contacts();
-    Groups groups = app.db().groups();
     int idContact = 0;
     String nameGroup = null;
     Groups beforeGroups = null;
-    GroupData addGroup = null;
+    GroupData removeGroup = null;
     int beforeNumberOfGroups = 0;
     for (ContactData contact : beforeContacts) {
-      if (contact.getGroups().size() == 0) {
+      if (contact.getGroups().size() != 0) {
         idContact = contact.getId();
         beforeGroups = contact.getGroups();
-        nameGroup = groups.iterator().next().getName();
-        addGroup = groups.iterator().next();
+        nameGroup = beforeGroups.iterator().next().getName();
+        removeGroup = beforeGroups.iterator().next();
         beforeNumberOfGroups = beforeGroups.size();
         break;
       }
     }
-    app.contact().addContactFromGroup(idContact, nameGroup);
+    app.contact().removeContactFromGroup(idContact, nameGroup);
 
     Groups afterGroups = null;
     int afterNumberOfGroups = 0;
@@ -66,8 +68,8 @@ public class AddContactToGroupTests extends TestBase {
       }
     }
 
-    assertThat(afterNumberOfGroups, equalTo(beforeNumberOfGroups + 1));
-    assertThat(afterGroups, equalTo(beforeGroups.withAdded(addGroup)));
+    assertThat(afterNumberOfGroups, equalTo(beforeNumberOfGroups - 1));
+    assertThat(afterGroups, equalTo(beforeGroups.withOut(removeGroup)));
   }
 
 }
