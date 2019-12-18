@@ -1,4 +1,4 @@
-Feature: Groups
+Feature Groups
 
     Scenario Outline: Group creation
         Given a set of groups
