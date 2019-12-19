@@ -2,36 +2,36 @@ package ru.stqa.pft.rest.model;
 
 public class Issue {
 
-  private int Id;
+  private String id;
   private String subject;
   private String description;
-  private String state;
-  private String nameState;
+  private int state;
+  private String state_name;
 
   public String getNameState() {
-    return nameState;
+    return state_name;
   }
 
-  public Issue withNameState(String nameState) {
-    this.nameState = nameState;
+  public Issue withNameState(String state_name) {
+    this.state_name = state_name;
     return this;
   }
 
-  public String getState() {
+  public int getState() {
     return state;
   }
 
-  public Issue withState(String state) {
+  public Issue withState(int state) {
     this.state = state;
     return this;
   }
 
-  public int getId() {
-    return Id;
+  public String getId() {
+    return id;
   }
 
-  public Issue withId(int id) {
-    Id = id;
+  public Issue withId(String id) {
+    this.id = id;
     return this;
   }
 
@@ -60,20 +60,19 @@ public class Issue {
 
     Issue issue = (Issue) o;
 
-    if (Id != issue.Id) return false;
+    if (state != issue.state) return false;
+    if (id != null ? !id.equals(issue.id) : issue.id != null) return false;
     if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
-    if (description != null ? !description.equals(issue.description) : issue.description != null) return false;
-    if (state != null ? !state.equals(issue.state) : issue.state != null) return false;
-    return nameState != null ? nameState.equals(issue.nameState) : issue.nameState == null;
+    return description != null ? description.equals(issue.description) : issue.description == null;
   }
 
   @Override
   public int hashCode() {
-    int result = Id;
+    int result = id != null ? id.hashCode() : 0;
     result = 31 * result + (subject != null ? subject.hashCode() : 0);
     result = 31 * result + (description != null ? description.hashCode() : 0);
-    result = 31 * result + (state != null ? state.hashCode() : 0);
-    result = 31 * result + (nameState != null ? nameState.hashCode() : 0);
+    result = 31 * result + state;
     return result;
   }
+
 }

@@ -21,7 +21,7 @@ public class RestTests {
   public void testCreateIssue() throws IOException {
     Set<Issue> oldIssues = getIssues();
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
-    int issueId = createIssue(newIssue);
+    String issueId = createIssue(newIssue);
     oldIssues.add(newIssue.withId(issueId));
     Set<Issue> newIssues = getIssues();
     assertEquals(newIssues, oldIssues);
@@ -39,13 +39,13 @@ public class RestTests {
     return Executor.newInstance().auth("288f44776e7bec4bf44fdfeb1e646490", "");
   }
 
-  private int createIssue(Issue newIssue) throws IOException {
+  private String createIssue(Issue newIssue) throws IOException {
     String json = getExecutor().execute(Request.Post("https://bugify.stqa.ru/api/issues.json")
             .bodyForm(new BasicNameValuePair("subject", newIssue.getSubject()),
                       new BasicNameValuePair("description", newIssue.getDescription())))
             .returnContent().asString();
     JsonElement parsed = JsonParser.parseString(json);
-    return parsed.getAsJsonObject().get("issue_id").getAsInt();
+    return parsed.getAsJsonObject().get("issue_id").getAsString();
   }
 
 }
