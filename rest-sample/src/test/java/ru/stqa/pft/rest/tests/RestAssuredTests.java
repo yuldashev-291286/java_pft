@@ -22,9 +22,9 @@ public class RestAssuredTests extends TestBase {
   }
 
   @Test
-  public void testCheckDefectResolved() throws IOException {
+  public void testCheckDefectOpen() throws IOException {
     skipIfNotFixed("2145");
-    System.out.println("Open defect has status: " + getStateNameIssue("2145"));
+    System.out.println("Defect has status: " + getStateNameIssue("2145"));
     assertEquals(getStateNameIssue("2145"), "Open");
   }
 
