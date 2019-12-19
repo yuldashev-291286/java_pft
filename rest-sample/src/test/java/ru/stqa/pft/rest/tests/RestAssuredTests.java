@@ -13,6 +13,7 @@ public class RestAssuredTests extends TestBase {
   @Test
   public void testCreateIssue() throws IOException {
     Set<Issue> oldIssues = getIssues();
+    System.out.println(oldIssues);
     Issue newIssue = new Issue().withSubject("Test issue").withDescription("New test issue");
     int issueId = createIssue(newIssue);
     oldIssues.add(newIssue.withId(issueId));
@@ -21,7 +22,7 @@ public class RestAssuredTests extends TestBase {
   }
 
   @Test
-  public void testCheckDefectStatus() throws IOException {
+  public void testCheckDefectResolved() throws IOException {
     skipIfNotFixed(2145);
     System.out.println("Corrected defect has the status: " + getStateNameIssue(2145));
     assertEquals(getStateNameIssue(2145), "Resolved");

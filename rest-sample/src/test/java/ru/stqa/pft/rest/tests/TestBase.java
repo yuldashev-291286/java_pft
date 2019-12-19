@@ -23,8 +23,7 @@ public class TestBase {
     String json = RestAssured.get("https://bugify.stqa.ru/api/issues.json").asString();
     JsonElement parsed = JsonParser.parseString(json);
     JsonElement issues = parsed.getAsJsonObject().get("issues");
-    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {
-    }.getType());
+    return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
   }
 
   public int createIssue(Issue newIssue) throws IOException {
@@ -59,13 +58,13 @@ public class TestBase {
 
   public String getStateNameIssue(int issueId) throws IOException {
     Set<Issue> issues = getIssues();
-    Issue varIssue = null;
+    Issue auxiliaryIssue = null;
     for (Issue issue : issues) {
       if (issue.getId() == issueId) {
-        varIssue = issue;
+        auxiliaryIssue = issue;
       }
     }
-    return varIssue.getNameState();
+    return auxiliaryIssue.getNameState();
   }
 
 }
