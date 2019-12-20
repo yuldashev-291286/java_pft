@@ -10,6 +10,7 @@ import org.testng.annotations.BeforeClass;
 import ru.stqa.pft.rest.model.Issue;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 
 public class TestBase {
@@ -26,6 +27,13 @@ public class TestBase {
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
   }
 
+  public Set<Issue> getIssue() throws IOException {
+    String json = RestAssured.get("https://bugify.stqa.ru/api/issues/2303.json").asString();
+    JsonElement parsed = JsonParser.parseString(json);
+    JsonElement issue = parsed.getAsJsonObject().get("issues");
+    return new Gson().fromJson(issue, new TypeToken<Set<Issue>>() {}.getType());
+  }
+
   public String createIssue(Issue newIssue) throws IOException {
     String json = RestAssured.given()
             .parameter("subject", newIssue.getSubject())
@@ -37,36 +45,18 @@ public class TestBase {
     return parsed.getAsJsonObject().get("issue_id").getAsString();
   }
 
-  public boolean isIssueOpen(String issueId) throws IOException {
-    Set<Issue> issues = getIssues();
-    Issue auxiliaryIssue = null;
-    for (Issue issue : issues) {
-      if (issue.getId().equals(issueId)) {
-        auxiliaryIssue = issue;
-      }
-    }
-    if (auxiliaryIssue.getState() == 0) {
+  public boolean isIssueOpen(Issue issue) throws IOException {
+    if (issue.getState() == 0) {
       return true;
     } else {
       return false;
     }
   }
 
-  public void skipIfNotFixed(String issueId) throws IOException {
-    if (! isIssueOpen(issueId)) {
-      throw new SkipException("Ignored because of issue " + issueId);
+  public void skipIfNotFixed(Issue issue) throws IOException {
+    if (isIssueOpen(issue)) {
+      throw new SkipException("Ignored because of issue " + issue.getId());
     }
-  }
-
-  public String getStateNameIssue(String issueId) throws IOException {
-    Set<Issue> issues = getIssues();
-    Issue auxiliaryIssue = null;
-    for (Issue issue : issues) {
-      if (issue.getId().equals(issueId)) {
-        auxiliaryIssue = issue;
-      }
-    }
-    return auxiliaryIssue.getNameState();
   }
 
 }

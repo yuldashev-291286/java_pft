@@ -25,7 +25,8 @@ public class PasswordChangeForUsersTests extends TestBase {
 
     app.session().login("administrator", "root");
 
-    String user = null; //app.manageUsers().addNewAccount();
+    //String user = app.manageUsers().addNewAccount();
+    String user = null;
     String email = null;
     List<UserData> usersList = app.db().usersList();
     for (UserData userData: usersList) {
@@ -49,7 +50,6 @@ public class PasswordChangeForUsersTests extends TestBase {
     HttpSession session = app.newSession();
     assertTrue(session.login(user, newPassword));
     assertTrue(session.isLoggedInAs(user));
-
   }
 
   private String findConfirmationLink(List<MailMessage> mailMessages, String email) {

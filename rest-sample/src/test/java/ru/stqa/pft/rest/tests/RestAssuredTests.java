@@ -4,9 +4,12 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.rest.model.Issue;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class RestAssuredTests extends TestBase {
 
@@ -22,10 +25,12 @@ public class RestAssuredTests extends TestBase {
   }
 
   @Test
-  public void testCheckDefectOpen() throws IOException {
-    skipIfNotFixed("2145");
-    System.out.println("Defect has status: " + getStateNameIssue("2145"));
-    assertEquals(getStateNameIssue("2145"), "Open");
+  public void testCheckDefectStatus() throws IOException {
+    Issue issue = getIssue().iterator().next();
+    skipIfNotFixed(issue);
+    System.out.println("Defect has status: " + issue.getNameState());
+
+    assertTrue(issue.getNameState().equals("Resolved"));
   }
 
 }
