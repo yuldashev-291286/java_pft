@@ -34,4 +34,7 @@ dependencies {
     implementation 'io.thorntail:mail:2.6.0.Final'
     implementation 'ru.lanwen.verbalregex:java-verbal-expressions:1.6'
     implementation 'biz.futureware.mantis:mantis-axis-soap-client:1.2.19'
+    implementation 'org.hibernate:hibernate-core:5.4.9.Final'
+    implementation 'mysql:mysql-connector-java:8.0.18'
+    implementation 'org.hamcrest:hamcrest:2.2'
  }

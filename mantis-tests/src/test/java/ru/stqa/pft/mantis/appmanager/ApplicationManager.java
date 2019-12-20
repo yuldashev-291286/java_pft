@@ -23,6 +23,9 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
   private SoapHelper soapHelper;
+  private ManageUsersHelper navigationHelper;
+  private SessionHelper sessionHelper;
+  private DbHelper dbHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -32,6 +35,7 @@ public class ApplicationManager {
   public void init() throws IOException {
     String target = System.getProperty("target", "local");
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+    dbHelper = new DbHelper();
   }
 
   public void stop() {
@@ -73,7 +77,13 @@ public class ApplicationManager {
       }
     }
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-    wd.get(properties.getProperty("web.baseUrl"));
+    wd.get(properties.getProperty("web.baseUrl") + "login_page.php");
+    return wd;
+  }
+
+  public WebDriver getDriver(String Url) {
+    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+    wd.get(Url);
     return wd;
   }
 
@@ -98,5 +108,22 @@ public class ApplicationManager {
     return soapHelper;
   }
 
+  public ManageUsersHelper manageUsers() {
+    if (navigationHelper == null) {
+      navigationHelper = new ManageUsersHelper(this);
+    }
+    return navigationHelper;
+  }
+
+  public SessionHelper session() {
+    if (sessionHelper == null) {
+      sessionHelper = new SessionHelper(this);
+    }
+    return sessionHelper;
+  }
+
+  public DbHelper db() {
+    return dbHelper;
+  }
 
 }
