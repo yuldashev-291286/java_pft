@@ -26,7 +26,7 @@ public class RestAssuredTests extends TestBase {
 
   @Test
   public void testCheckDefectStatus() throws IOException {
-    Issue issue = getIssue().iterator().next();
+    Issue issue = getIssue(2303).iterator().next();
     skipIfNotFixed(issue);
     System.out.println("Defect has status: " + issue.getNameState());
 

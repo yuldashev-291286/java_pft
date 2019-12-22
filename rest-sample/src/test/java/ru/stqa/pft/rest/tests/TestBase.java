@@ -10,7 +10,6 @@ import org.testng.annotations.BeforeClass;
 import ru.stqa.pft.rest.model.Issue;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 public class TestBase {
@@ -27,8 +26,8 @@ public class TestBase {
     return new Gson().fromJson(issues, new TypeToken<Set<Issue>>() {}.getType());
   }
 
-  public Set<Issue> getIssue() throws IOException {
-    String json = RestAssured.get("https://bugify.stqa.ru/api/issues/2303.json").asString();
+  public Set<Issue> getIssue(int idIssue) throws IOException {
+    String json = RestAssured.get("https://bugify.stqa.ru/api/issues/" + idIssue + ".json").asString();
     JsonElement parsed = JsonParser.parseString(json);
     JsonElement issue = parsed.getAsJsonObject().get("issues");
     return new Gson().fromJson(issue, new TypeToken<Set<Issue>>() {}.getType());
