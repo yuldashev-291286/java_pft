@@ -12,6 +12,8 @@ import ru.stqa.pft.rest.model.Issue;
 import java.io.IOException;
 import java.util.Set;
 
+import static org.testng.Assert.assertTrue;
+
 public class TestBase {
 
   @BeforeClass
@@ -45,7 +47,7 @@ public class TestBase {
   }
 
   public boolean isIssueOpen(Issue issue) throws IOException {
-    if (issue.getState() == 0) {
+    if (issue.getNameState().equals("Open") == true) {
       return true;
     } else {
       return false;
